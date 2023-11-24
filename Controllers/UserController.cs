@@ -73,7 +73,7 @@ namespace Pass_It_Out.Controllers
             {
                 TempData["Message"] = "LogIn UnSuccessfull!!! Please Register";
             }
-            return View("UserRegistration");
+            return View("UserLogin");
         }
 
         public ActionResult UserLogout()
