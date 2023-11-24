@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+@model List<Pass_It_Out.Models.Post>
+
+
+<div class="container">
+    <div class="row">
+        @foreach (Post post in Model)
+        {
+            <div class="col-md-3">
+                <div class="card mb-4" style="width: 300px;">
+                    <img class="card-img-top" src="data:image/png;base64,@Convert.ToBase64String(post.Upload_Images)" alt="Card image" style="width:100%; height:auto;object-fit">
+                    <div class="card-body">
+                        <h4 class="card-title">@post.Title</h4>
+                        <div style="align-content:stretch">
+                            <p class="card-text">
+                                Category Type: @post.CategoryId <br />
+                                Description: @post.Description <br />
+                                Posted By: @post.CreatedBy <br />
+                                Created Date: @post.CreatedDate
+                            </p>
+                        </div>
+                        @Html.ActionLink("Send Message", "Index", "Message", new { PostOwnerId=post.UserId }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

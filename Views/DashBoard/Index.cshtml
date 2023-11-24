@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<style>
+    .h1 {
+        text-align: center;
+    }
+    .card_content
+    {
+
+    }
+</style>
+
+
+<div >
+     
+</div>
+
+
+                                           @* DashBoard Controller Index Method*@
+<div class="container" style="flex;">
+    <div class="row">
+        @foreach (Post post in ViewBag.AllPosts)
+        {
+            <div class="col-md-3">
+                <div class="card mb-4" style="width: 300px;height: 380px ;box-shadow:0 0 5px lightslategray;padding:5px;object-fit">
+                    <img class="card-img-top" src="data:image/png;base64,@Convert.ToBase64String(post.Upload_Images)" alt="Card image" style="width:100%;height:150px;object-fit">
+                    <div class="card-body" style="height:300px;text-align:left">
+                        <h4 class="card-title">@post.Title</h4>
+                        <div style="align-content:stretch">
+                            <p>
+                                <strong>Category Type:</strong> @post.CategoryId <br />
+                                <strong>Description:</strong> @post.Description <br />
+                                <strong>Posted By:</strong> @post.CreatedBy <br />
+                                <strong>Created Date:</strong> @post.CreatedDate
+                            </p>
+                        </div>
+                    </div>
+                    @Html.ActionLink("Send Message", "Index", "Message", new { PostOwnerId = post.UserId }, new { @class = "btn btn-primary btn-sm btn-block" })
+                </div>
+            </div>
+        }
+    </div>
+</div> 
+
+
+
+
+
+
+
+
+

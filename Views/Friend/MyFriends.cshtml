@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h2 style="font-family:Calibri">My Friends</h2>
+@{
+    //@Html.ActionLink("Add Friend","Index","Friend",new {@class="btn btn-secondary", align="center"})
+}
+@foreach(Friend friend in ViewBag.FriendsList)
+{
+        <div class="col">
+            <div class="card col float-lg-start" style="width:400px">
+                <div class="card-body col">
+                    <h4 class="card-title">@friend.FriendId</h4>
+                    <p class="card-text">Status=@friend.Status Requested Date=@friend.RequestDate</p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                </div>
+            </div>
+        </div>
+}
+
+<a href="@Url.Action("Index", "Friend")" class="btn btn-primary">
+    <i class="icon-pencil icon-white "></i>
+    <span>
+        <strong>Add Friend</strong>
+    </span>
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*     <table class="table table-hover ">
+        <thead>
+            <tr>
+                <th>EmailId</th>
+                <th>Status</th>
+                <th>RequestDate</th>
+                <th>ConfirmDate</th>
+            </tr>
+        </thead>
+    <tbody>
+        @foreach (Friend friend in ViewBag.FriendsList)
+        {
+            <tr class="info">
+                <td>@friend.FriendId</td>
+                <td>@friend.Status</td>
+                <td>@friend.RequestDate</td>
+                <td>@friend.ConfirmDate</td>
+            </tr>
+        }
+    </tbody>
+</table> *@
