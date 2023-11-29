@@ -60,12 +60,7 @@
             @Html.ValidationMessageFor(val=>val.Title,"",new{@class="text-danger"})
         </div>
 
-        <div class="mb-3">
-            @Html.LabelFor(val=>val.Status)
-            <label>
-                <input type="checkbox" id="Status" name="Status" value="true">Active
-            </label>
-        </div>
+        
 
 
         <input type="submit" value="Update" class="btn btn-primary"></input>

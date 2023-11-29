@@ -19,7 +19,18 @@ namespace Pass_It_Out.Controllers
         {
             string UserId = HttpContext.Session.GetString("UserId");
             List<Post> posts=service.GetAllPosts(UserId);
+            List<Category> categories = service.GetAllCategories();
             ViewBag.AllPosts = posts;
+            foreach (var post in posts)
+            {
+                foreach (var category in categories)
+                {
+                    if (post.CategoryId == category.CategoryId)
+                    {
+                        ViewBag.CategoryName = category.Name;
+                    }
+                }
+            }
             return View();
         }
     }

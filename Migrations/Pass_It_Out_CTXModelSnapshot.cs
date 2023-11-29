@@ -30,9 +30,8 @@ namespace Pass_It_Out.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CategoryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -51,7 +50,7 @@ namespace Pass_It_Out.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("ConfirmDate")
+                    b.Property<DateTime?>("ConfirmDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FriendId")

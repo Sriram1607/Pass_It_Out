@@ -40,13 +40,26 @@ namespace Pass_It_Out.Controllers
         }
         public IActionResult AllPosts()
         {
-            List<Post> allposts = service.GetAllPosts();
+            string UserId = HttpContext.Session.GetString("UserId");
+            List<Post> allposts = service.GetAllPosts(UserId);
             return View(allposts);  
         }
         public IActionResult Index()
         {
             string CurrentUserId = HttpContext.Session.GetString("UserId");
             List<Post> posts = service.MyPosts(CurrentUserId);
+            List<Category> categories= service.GetAllCategories();
+
+            foreach(var post in posts)
+            {
+                foreach(var category in categories)
+                {
+                    if(post.CategoryId==category.CategoryId)
+                    {
+                        ViewBag.CategoryName = category.Name;
+                    }
+                }
+            }
            
             return View(posts);
         }
@@ -70,7 +83,7 @@ namespace Pass_It_Out.Controllers
                 post.CreatedBy = postVM.CreatedBy;
                 post.CreatedDate = DateTime.Now.ToString();
                 post.Upload_Images = GetImage(postVM.Upload_Images);
-                post.Status = postVM.Status;
+                post.Status = true;
                 bool success=service.Save(post);
                 if(success)
                 {
@@ -100,6 +113,7 @@ namespace Pass_It_Out.Controllers
             }
             return data;
         }
+
         [UserAuthentication]
         public IActionResult AddPost()
         {
@@ -107,6 +121,7 @@ namespace Pass_It_Out.Controllers
             ViewBag.CatogriesList = categories;
             return View();
         }
+
         [HttpGet]
         public ActionResult EditPost(int id) 
         {
@@ -134,7 +149,7 @@ namespace Pass_It_Out.Controllers
                 post.CreatedBy = postVM.CreatedBy;
                 post.CreatedDate = DateTime.Now.ToString();
                 post.Upload_Images = GetImage(postVM.Upload_Images);
-                post.Status = postVM.Status;
+                post.Status = true;
                 bool success = service.Update(post);
                 if (success)
                 {

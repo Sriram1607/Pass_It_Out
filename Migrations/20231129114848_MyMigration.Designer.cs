@@ -12,8 +12,8 @@ using Pass_It_Out.Context;
 namespace Pass_It_Out.Migrations
 {
     [DbContext(typeof(Pass_It_Out_CTX))]
-    [Migration("20231122075333_statusupdated")]
-    partial class statusupdated
+    [Migration("20231129114848_MyMigration")]
+    partial class MyMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,8 @@ namespace Pass_It_Out.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CategoryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -54,7 +53,7 @@ namespace Pass_It_Out.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("ConfirmDate")
+                    b.Property<DateTime?>("ConfirmDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FriendId")

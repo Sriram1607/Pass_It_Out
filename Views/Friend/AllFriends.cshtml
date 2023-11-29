@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h2 style="font-family:Calibri">My Friends</h2>
+
+<div>
+@{
+    @if (ViewBag.AllFriends == null)
+    {
+        <p>No Friends</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">UserId</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (Friend friend in ViewBag.AllFriends)
+                {
+                    if (friend.FriendId != ViewBag.UserId)
+                    {
+                        <tr>
+                            <td>@friend.FriendId</td>
+                        </tr>
+
+                    }
+                  
+                }
+            </tbody>
+    </table>
+    }
+}
+
+</div>
+
+<a href="@Url.Action("Index", "Friend")" class="btn btn-primary">
+    <i class="icon-pencil icon-white "></i>
+    <span>
+        <strong>Add Friend</strong>
+    </span>
+</a>
+
+
+
+<a href="@Url.Action("SentRequests", "Friend")" class="btn btn-primary">
+    <i class="icon-pencil icon-white "></i>
+    <span>
+        <strong>View Sent Requests</strong>
+    </span>
+</a>
+
+
+
+<a href="@Url.Action("FriendsRequests", "Friend")" class="btn btn-primary">
+    <i class="icon-pencil icon-white "></i>
+    <span>
+        <strong>View Friend Requests</strong>
+    </span>
+</a>
+

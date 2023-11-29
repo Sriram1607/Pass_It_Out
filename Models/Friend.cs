@@ -8,7 +8,7 @@
         public string Status { set; get; }
 
         public DateTime RequestDate { set; get; }
-        public DateTime ConfirmDate { set; get; }
+        public DateTime? ConfirmDate { set; get; }
 
         // Navigation Property
 

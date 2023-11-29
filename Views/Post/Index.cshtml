@@ -4,48 +4,102 @@
 
 @model List<Pass_It_Out.Models.Post>
 
+<style>
+    .h1 {
+        text-align: center;
+    }
 
-<div class="container">
+
+
+    .container {
+        margin:10px;
+        justify-content: center;
+    }
+
+
+
+    .card {
+        width: 310px;
+        height: 440px;
+        margin: 10px;
+        justify-content: center;
+        box-shadow: 0 0 10px lightslategray;
+    }
+
+    .card-image {
+        height: 220px;
+        width: 100%;
+        margin-bottom: 5px;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .card-body {
+        height: 170px;
+        text-align: left;
+        text-align: left;
+        margin-bottom: 2px;
+    }
+
+    .card .card {
+        margin-bottom: 10px;
+    }
+
+    .text {
+        text-align: left;
+    }
+
+    .button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+</style>
+
+<section class="container">
     <div class="row">
         @foreach (Post post in Model)
         {
             <div class="col-md-3">
-                <div class="card mb-4" style="width: 300px;">
-                    <img class="card-img-top" src="data:image/png;base64,@Convert.ToBase64String(post.Upload_Images)" alt="Card image" style="width:100%; height:auto;object-fit">
+                <div class="card mb-4">
+                    <img class="card-image" src="data:image/png;base64,@Convert.ToBase64String(post.Upload_Images)" alt="Card image" style="object-fit">
                     <div class="card-body">
                         <h4 class="card-title">@post.Title</h4>
-                        <div style="align-content:stretch">
-                            <p class="card-text">
-                                Category Type: @post.CategoryId <br />
-                                Description: @post.Description <br />
-                                Posted By: @post.CreatedBy <br />
-                                Created Date: @post.CreatedDate<br />
-                                @if (post.Status == true)
-                                {
-                                    <div style="align-content:center">
-                                        <div style="float:right">
-                                            @Html.ActionLink("Make Post InActive","MakePostInActive","Post",new{@id=post.Id})<br />
-                                        </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div style="align-content:center">
-                                        <div style="float:right">
-                                            @Html.ActionLink("Make Post Active","MakePostActive","Post",new{@id=post.Id})<br />
-                                        </div>
-                                    </div>
-                                }
-                                <div style="float:left;">
-                                    @Html.ActionLink("Edit","EditPost","Post",new{@id=post.Id})
-                                </div>
+                            <p class="text">
+                            <strong>Category Type:</strong>@ViewBag.CategoryName <br />
+                                <strong>Description:</strong> @post.Description <br />
+                                <strong>Posted By:</strong> @post.CreatedBy <br />
+                                <strong>Created Date:</strong> @post.CreatedDate <br/>
+                             </p>
 
-                            </p>
-                        </div>
-
+                               
                     </div>
+                    @if (post.Status == true)
+                    {
+                        <div style="align-content:center; margin-bottom:5px;margin-left:5px;">
+                            <div style="float:right;margin-left:5px;margin-bottom:5px;">
+                                @Html.ActionLink("Make Post InActive", "MakePostInActive", "Post", new { @id = post.Id })<br />
+                            </div>
+                            <div style="float:left;">
+                                @Html.ActionLink("Edit", "EditPost", "Post", new { @id = post.Id })
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="align-content:center; margin-bottom:5px;margin-left:5px;" >
+                            <div style="float:right;margin-left:5px;margin-bottom:5px;">
+                                @Html.ActionLink("Make Post Active", "MakePostActive", "Post", new { @id = post.Id })<br />
+                            </div>
+
+                            <div style="float:left;">
+                                @Html.ActionLink("Edit", "EditPost", "Post", new { @id = post.Id })
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         }
     </div>
-</div>
+</section>

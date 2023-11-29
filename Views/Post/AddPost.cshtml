@@ -94,14 +94,6 @@
             @Html.ValidationMessageFor(val=>val.Title,"",new{@class="text-danger"})
         </div>
 
-            <div class="mb-3 form-group">
-            @Html.LabelFor(val=>val.Status)
-
-            <label>
-                <input type="checkbox" id="Status" name="Status" value="true">Active
-            </label>
-        </div>
-
         <input type="submit" value="Save" class="btn btn-primary btn-save"></input>
     }
 
@@ -111,3 +103,12 @@
 
 
 
+@*    <div class="mb-3 form-group">
+
+            @Html.LabelFor(val=>val.Status)
+
+            <label>
+                <input type="checkbox" id="Status" name="Status" value="true">Active
+            </label>
+
+        </div> *@

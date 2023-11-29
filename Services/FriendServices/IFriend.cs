@@ -6,5 +6,13 @@ namespace Pass_It_Out.Services.FriendServices
     {
         bool Save(Friend friend);
         List<Friend> GetAllFriends(string UserId);
+
+        Friend GetFriendById(string UserId, string Id);
+
+        bool Update(string Id,Friend friend);
+
+        List<Friend> GetAllSentRequests(string UserId);
+
+        List<Friend> GetAllFriendRequests(string UserId);
     }
 }

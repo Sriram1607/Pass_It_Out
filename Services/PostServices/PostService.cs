@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Update.Internal;
-using Pass_It_Out.Context;
+﻿using Pass_It_Out.Context;
 using Pass_It_Out.Models;
+using System.Linq;
 
 namespace Pass_It_Out.Services.PostServices
 {
@@ -15,17 +15,32 @@ namespace Pass_It_Out.Services.PostServices
 
         public List<Post> GetAllPosts(string UserId)
         {
-            List<Post> posts = ctx.Posts.Where((val => val.UserId != UserId && val.Status.Equals(true))).ToList();
-            return posts;
+            var friends = ctx.Friends.Where(f => f.UserId == UserId).Select(f=>f.FriendId).ToList();
+
+            var listOfAll = ctx.Posts.Where(p => p.PostTo == "2").ToList();
+            
+            var listOfOnlyFriends=ctx.Posts.Where(p=>p.PostTo=="1" && friends.Contains(p.UserId)).ToList();
+            
+            var totalList=new List<Post>();
+            totalList.AddRange(listOfAll);
+            totalList.AddRange(listOfOnlyFriends);
+
+            return totalList;
         }
+
+
         public List<Post> GetAllPosts()
         {
-            List<Post> AllPosts=ctx.Posts.Where(val=>val.PostTo=="2").ToList();
+            List<Post> AllPosts = ctx.Posts.Where(val => val.PostTo == "2").ToList();
             return AllPosts;
+
+
+
         }
         public List<Post> MyPosts(string UserId)
         {
-            return ctx.Posts.Where(val=>val.UserId==UserId).ToList();
+            var posts = ctx.Posts.Where(p => p.UserId == UserId).ToList();
+            return posts;   
         }
         public bool Save(Post post)
         {
@@ -61,7 +76,6 @@ namespace Pass_It_Out.Services.PostServices
         public bool Update(Post post, int id)
         {
             int rowsimpacted=0;
-            //Post mypost=ctx.Posts.Where(val=>val.Id==id).FirstOrDefault();
             Post updatedpost = post;
             ctx.Update(post);
             rowsimpacted = ctx.SaveChanges();

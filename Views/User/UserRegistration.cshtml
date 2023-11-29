@@ -17,7 +17,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 150vh;
         }
 
         .registration-form {
@@ -59,11 +59,13 @@
     </style>
 </head>
 
-<h2 style="font-family:Calibri">User Registration</h2>
 
 <div class="registration-container">
+
     <div class="registration-form">
 @{
+             <h2 style="font-family:Calibri;text-align:center;color:black">User Registration</h2>
+
     @using (Html.BeginForm("UserRegistration", "User", FormMethod.Post, new { @class = "form-label" }))
     {
          <div class="mb-3 form-group">
@@ -112,5 +114,6 @@
       <input type="submit" value="Register" class="btn btn-success btn-register"></input>
     }
 }
+    @Html.ActionLink("Back to Login","UserLogin","User")
     </div>
 </div>

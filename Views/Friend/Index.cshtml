@@ -16,28 +16,10 @@
             @Html.ValidationMessageFor(val=>val.FriendId,"",new{@class="text-danger"})
         </div>
 
-        <div class="mb-3">
-            @Html.LabelFor(val=>val.Status,new{@class="form-label"})
-            <select class="form-select" name="Status" multiple aria-label="multiple select example">
-                <option value="Pending" selected>Pending</option>
-                <option value="Confirmed">Confirmed</option>
-                <option value="Blocked">Blocked</option>
-            </select>
-        </div>
-
-        // <div class="mb-3">
-        //     @Html.LabelFor(val=>val.RequestDate,new{@class="form-label"})
-        //     <input type="date" class="form-control" name="RequestDate" id="RequestDate"></input>
-        //     @Html.ValidationMessageFor(val=>val.RequestDate,"",new{@class="text-danger"})
-        // </div>
-
-        <div class="mb-3">
-            @Html.LabelFor(val=>val.ConfirmDate,new{@class="form-label"})
-            <input type="date" class="form-control" name="ConfirmDate" id="ConfirmDate"></input>
-            @Html.ValidationMessageFor(val=>val.ConfirmDate,"",new{@class="text-danger"})
-        </div>
-
         <input type="submit" value="Submit" class="btn btn-primary"></input>
     }
 
 }
+
+
+

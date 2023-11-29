@@ -10,8 +10,8 @@
 
 
     .container {
-        display: flex;
         justify-content: center;
+        margin:10px;
     }
 
 
@@ -73,7 +73,7 @@
                     <div class="card-body">
                         <h4 class="card-title">@post.Title</h4>
                             <p class="text">
-                                <strong>Category Type:</strong> @post.CategoryId <br />
+                            <strong>Category Type:</strong>@ViewBag.CategoryName <br />
                                 <strong>Description:</strong> @post.Description <br />
                                 <strong>Posted By:</strong> @post.CreatedBy <br />
                                 <strong>Created Date:</strong> @post.CreatedDate
